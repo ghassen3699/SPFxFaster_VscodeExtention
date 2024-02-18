@@ -15,7 +15,7 @@ async function createNewSpfxSolution() {
         value: 'MyWebPart' // You can set a default value or leave it empty
     });
 
-    const languageTypeCommands = ['Using React', 'Using Vanilla Javascript', ''];
+    const languageTypeCommands = ['Using React', 'Using Vanilla Javascript', 'Minimal'];
     const languageType = await vscode.window.showQuickPick(languageTypeCommands, {
         matchOnDetail: true,
     });
@@ -40,14 +40,15 @@ async function createNewSpfxSolution() {
             let yeomanCommand;
             if (languageType === 'Using React') {
                 yeomanCommand = `yo @microsoft/sharepoint --solutionName ${userInput} --componentType "webpart" --framework "react" --component-name ${webPartName} --skip-install`;
-            } else {
+            } else if (languageType === 'Using Vanilla Javascript'){
                 yeomanCommand = `yo @microsoft/sharepoint --solutionName ${userInput} --componentType "webpart" --framework "none"--component-name ${webPartName} --skip-install`;
+            }else {
+                yeomanCommand = `yo @microsoft/sharepoint --solutionName ${userInput} --componentType "webpart" --framework "minimal"--component-name ${webPartName} --skip-install`;
             }
 
             try {
-                // Run the Yeoman command using promisified exec
-                const { stdout } = await exec(yeomanCommand, { cwd: selectedFolderPath });
-                console.log('Yeoman command output:', stdout);
+                // Run the Yeoman command
+                await exec(yeomanCommand, { cwd: selectedFolderPath });
                 vscode.window.showInformationMessage(`Your new Project ${userInput} is ready now.`);
                 vscode.window.showInformationMessage(`Please run 'npm install' in the terminal to complete the installation.`);
             } catch (error) {

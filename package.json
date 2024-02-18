@@ -9,12 +9,34 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:spfx-first-extention.manageSPFx",
+    "onCommand:spfx-first-extention.cleanProject",
+    "onCommand:spfx-first-extention.buildProject",
+    "onCommand:spfx-first-extention.bundleProject",
+    "onCommand:spfx-first-extention.packageProject"
+  ],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [{
-      "command": "spfx-first-extention.helloWorld",
-      "title": "Hello World"
+      "command": "spfx-first-extention.manageSPFx",
+      "title": "SPFx: Manage Your Projects"
+    },
+    {
+      "command": "spfx-first-extention.cleanProject",
+      "title": "SPFx: Clean Project"
+    },
+    {
+      "command": "spfx-first-extention.buildProject",
+      "title": "SPFx: Build Project"
+    },
+    {
+      "command": "spfx-first-extention.bundleProject",
+      "title": "SPFx: Bundle Project"
+    },
+    {
+      "command": "spfx-first-extention.packageProject",
+      "title": "SPFx: Package Project"
     }]
   },
   "scripts": {
