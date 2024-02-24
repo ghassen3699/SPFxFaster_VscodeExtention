@@ -7,7 +7,7 @@ const { cleanProject } = require('../src/functions/cleanProject') ;
 const { buildProject } = require('../src/functions/buildProject') ;
 const { bundleProject } = require('../src/functions/bundleProject') ;
 const { packageProject } = require('../src/functions/packageProject') ;
-
+const { updateWebpartNameProject } = require('../src/functions/updateWebpartProject') ;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -21,11 +21,19 @@ async function activate(context) {
         const userInput = await vscode.window.showQuickPick(InitialCommands, {
             matchOnDetail: true,
         })
-        console.log(userInput)
+        console.log(userInput) ;
+
+        // Add new spfx project
         if (userInput === "Create a new SPFx Solution") {
-            await createNewSpfxSolution()
+            await createNewSpfxSolution() ;
+
+            // Create new web part in current project
         } else if (userInput === "Create a new webpart") {
-            await addSPFxWebPart()
+            await addSPFxWebPart() ;
+
+            // Update webpart name in current project
+        } else if (userInput === "Update your webpart name") {
+            await updateWebpartNameProject()
         }
     });
 
