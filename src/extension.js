@@ -17,7 +17,7 @@ async function activate(context) {
 
     // Create new solution
     let manageSPFxCommands = vscode.commands.registerCommand('spfx-first-extention.manageSPFx', async function () {
-        const InitialCommands = ['Create a new SPFx Solution', 'Create a new webpart', 'Update your webpart name', 'Delete your webpart']
+        const InitialCommands = ['Create a new SPFx Solution', 'Rename your SPFx Solution', 'Create a new webpart', 'Delete your webpart']
         const userInput = await vscode.window.showQuickPick(InitialCommands, {
             matchOnDetail: true,
         })
@@ -32,7 +32,7 @@ async function activate(context) {
             await addSPFxWebPart() ;
 
             // Update webpart name in current project
-        } else if (userInput === "Update your webpart name") {
+        } else if (userInput === "Rename your SPFx Solution") {
             await updateWebpartNameProject()
         }
     });
